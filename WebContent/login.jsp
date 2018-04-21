@@ -13,7 +13,7 @@
   		<div style="margin-top:5px; text-align: center;">
   			<p style="font-size: 28px; font-weight: bold;">Course Selecting System</p>
   			
-         	<form action="Login"  method="post" style="font-size: 18px; margin-top: 50px;" >  
+         	<form action="LoginController"  method="post" style="font-size: 18px; margin-top: 50px;" >  
       			  &nbsp;ACCOUNT：<input type="text" name="name"value=""><br><br>  
     			 PASSWORD：<input type="password" name="pwd"value=""><br><br>  
              		  <input id="login" type="submit"value="login"name="login">&nbsp;&nbsp;&nbsp;&nbsp;<input id="reset" type="reset" value="reset"><br>  
