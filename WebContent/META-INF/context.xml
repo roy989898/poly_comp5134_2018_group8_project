@@ -1,0 +1,9 @@
+<Context>
+
+	<Resource name="jdbc/db" auth="Container"
+		type="javax.sql.DataSource" maxActive="20" maxIdle="5" maxWait="10000"
+		username="p8qg9zn519w6hjsk" password="t2tpdhdmabinzrgu"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://fugfonv8odxxolj8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/fvlnm6jm126bitz7" />
+
+</Context>
