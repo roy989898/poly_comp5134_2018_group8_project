@@ -1,6 +1,6 @@
 package Model;
 
-public class ChooseTable {
+public class Couse {
 
 	private int id;
 	private int studentid;
@@ -8,7 +8,7 @@ public class ChooseTable {
 	private String teachername;
 	private String teachercourse;
 
-	public ChooseTable(int id, int studentid, int teacherid, String teachername, String teachercourse) {
+	public Couse(int id, int studentid, int teacherid, String teachername, String teachercourse) {
 		super();
 		this.id = id;
 		this.studentid = studentid;

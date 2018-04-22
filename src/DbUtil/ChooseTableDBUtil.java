@@ -10,20 +10,19 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import Model.ChooseTable;
+import Model.Couse;
 import Model.TeacherStudent;
 
 public class ChooseTableDBUtil extends BasicDBUtil {
 
 	public ChooseTableDBUtil(DataSource dataSource) {
 		super(dataSource);
-		
-	}
-	
-	
-	public List<ChooseTable> getChooseTables() throws SQLException {
 
-		List<ChooseTable> chooseTables = new ArrayList<>();
+	}
+
+	public List<Couse> getChooseTables() throws SQLException {
+
+		List<Couse> chooseTables = new ArrayList<>();
 
 		Connection myConnection = null;
 		Statement myStatement = null;
@@ -44,14 +43,10 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 				int id = myResultSet.getInt("id");
 				int studentid = myResultSet.getInt("studentid");
 				int teacherid = myResultSet.getInt("teacherid");
-				String teachername=myResultSet.getString("teachername");
-				String teachercourse=myResultSet.getString("teachercourse");
-				
+				String teachername = myResultSet.getString("teachername");
+				String teachercourse = myResultSet.getString("teachercourse");
 
-				
-				ChooseTable	chooseTable=new ChooseTable(id, studentid, teacherid, teachername, teachercourse);
-				
-				
+				Couse chooseTable = new Couse(id, studentid, teacherid, teachername, teachercourse);
 
 				chooseTables.add(chooseTable);
 			}
@@ -61,10 +56,10 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 
 		return chooseTables;
 	}
-	
-	public List<ChooseTable> getChooseTablesBuTeacherName(String teacherName) throws SQLException {
 
-		List<ChooseTable> chooseTables = new ArrayList<>();
+	public List<Couse> getChooseTablesBuTeacherName(String teacherName) throws SQLException {
+
+		List<Couse> chooseTables = new ArrayList<>();
 
 		Connection myConnection = null;
 		PreparedStatement myStatement = null;
@@ -84,14 +79,10 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 				int id = myResultSet.getInt("id");
 				int studentid = myResultSet.getInt("studentid");
 				int teacherid = myResultSet.getInt("teacherid");
-				String teachername=myResultSet.getString("teachername");
-				String teachercourse=myResultSet.getString("teachercourse");
-				
+				String teachername = myResultSet.getString("teachername");
+				String teachercourse = myResultSet.getString("teachercourse");
 
-				
-				ChooseTable	chooseTable=new ChooseTable(id, studentid, teacherid, teachername, teachercourse);
-				
-				
+				Couse chooseTable = new Couse(id, studentid, teacherid, teachername, teachercourse);
 
 				chooseTables.add(chooseTable);
 			}
@@ -101,11 +92,10 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 
 		return chooseTables;
 	}
-	
-	
-	public List<ChooseTable> getChooseTablesByStudentID(int studentID) throws SQLException {
 
-		List<ChooseTable> chooseTables = new ArrayList<>();
+	public List<Couse> getChooseTablesByStudentID(int studentID) throws SQLException {
+
+		List<Couse> chooseTables = new ArrayList<>();
 
 		Connection myConnection = null;
 		PreparedStatement myStatement = null;
@@ -125,14 +115,10 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 				int id = myResultSet.getInt("id");
 				int studentid = myResultSet.getInt("studentid");
 				int teacherid = myResultSet.getInt("teacherid");
-				String teachername=myResultSet.getString("teachername");
-				String teachercourse=myResultSet.getString("teachercourse");
-				
+				String teachername = myResultSet.getString("teachername");
+				String teachercourse = myResultSet.getString("teachercourse");
 
-				
-				ChooseTable	chooseTable=new ChooseTable(id, studentid, teacherid, teachername, teachercourse);
-				
-				
+				Couse chooseTable = new Couse(id, studentid, teacherid, teachername, teachercourse);
 
 				chooseTables.add(chooseTable);
 			}
@@ -142,9 +128,31 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 
 		return chooseTables;
 	}
-	
-	
-	
-	
+
+	public void insetCourse(Couse course) throws Exception {
+
+		Connection myConnection = null;
+		PreparedStatement myStatement = null;
+
+		try {
+			myConnection = dataSource.getConnection();
+			// create a SQL statment
+			String sql = "insert into choose_table" + "(studentid, teacherid,teachername,teachercourse)"
+					+ "values(?,?,?,?)";
+			myStatement = myConnection.prepareStatement(sql);
+
+			// set the param values for the student
+			myStatement.setInt(1, course.getStudentid());
+			myStatement.setInt(2, course.getTeacherid());
+			myStatement.setString(3, course.getTeachername());
+			myStatement.setString(4, course.getTeachercourse());
+
+			myStatement.execute();
+
+		} finally {
+			close(myConnection, myStatement, null);
+		}
+
+	}
 
 }

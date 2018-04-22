@@ -1,10 +1,10 @@
-<%@page import="Model.ChooseTable"%>
+<%@page import="Model.Couse"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -17,7 +17,7 @@
 
 
 <%
-	List<ChooseTable> stuIdList = (List<ChooseTable>) request.getAttribute("stuIdList");
+	List<Couse> stuIdList = (List<Couse>) request.getAttribute("stuIdList");
 %>
 </head>
 
@@ -51,7 +51,7 @@
 
 
 				<%
-					for (ChooseTable student : stuIdList) {
+					for (Couse student : stuIdList) {
 				%>
 				<tr>
 					<td style="margin-left: 40px"><%=student.getTeachercourse()%></td>
@@ -83,7 +83,7 @@
 
 
 				<%
-					for (ChooseTable student : stuIdList) {
+					for (Couse student : stuIdList) {
 				%>
 				<tr>
 					<td style="margin-left: 40px"><%=student.getStudentid()%></td>
