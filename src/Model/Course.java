@@ -16,6 +16,20 @@ public class Course {
 		this.teachername = teachername;
 		this.teachercourse = teachercourse;
 	}
+	
+	
+	
+
+	public Course(int studentid, int teacherid, String teachername, String teachercourse) {
+		super();
+		this.studentid = studentid;
+		this.teacherid = teacherid;
+		this.teachername = teachername;
+		this.teachercourse = teachercourse;
+	}
+
+
+
 
 	public int getId() {
 		return id;
