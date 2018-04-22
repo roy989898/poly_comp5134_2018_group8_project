@@ -133,7 +133,7 @@ tr:nth-child(even) {
 						}).get().join(',');
 				$.ajax({
 					type : "POST",
-					url : "/AjaxSubmitCourse",
+					url : "AjaxSubmitCourseController",
 					dataType : "text",
 					data : {
 						"courses" : courses,
@@ -154,7 +154,7 @@ tr:nth-child(even) {
 		var chance = $('input:radio:checked').val();
 		$.ajax({
 			type : "POST",
-			url : "AjaxSubmitCourse",
+			url : "AjaxSubmitCourseController",
 			dataType : "text",
 			data : {
 				"chance" : chance,

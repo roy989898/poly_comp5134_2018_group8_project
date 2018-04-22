@@ -95,4 +95,68 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 		return teacherStudent;
 	}
 
+	public TeacherStudent getStudentSteacherByUserName(String userName) throws SQLException {
+
+		Connection myConnection = null;
+		PreparedStatement myStatement = null;
+		ResultSet myResultSet = null;
+		TeacherStudent teacherStudent = null;
+		try {
+			myConnection = dataSource.getConnection();
+			// create a SQL statment
+			String sql = "select * from student_teacher where name=?";
+			myStatement = myConnection.prepareStatement(sql);
+			myStatement.setString(1, userName);
+
+			myResultSet = myStatement.executeQuery();
+
+			// process the result set
+
+			if (myResultSet.next()) {
+				int id = myResultSet.getInt("id");
+				String name = myResultSet.getString("name");
+				String pwd = myResultSet.getString("pwd");
+				String chance = myResultSet.getString("chance");
+				String time = myResultSet.getString("time");
+				String days = myResultSet.getString("days");
+				boolean isTeacher = myResultSet.getBoolean("is_teacher");
+
+				teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher);
+
+			}
+		} finally {
+			close(myConnection, myStatement, myResultSet);
+		}
+
+		return teacherStudent;
+	}
+
+	public void updateStudentTeacher(TeacherStudent teacherStudent) throws SQLException {
+		Connection myConnection = null;
+		PreparedStatement myStatement = null;
+
+		try {
+			myConnection = dataSource.getConnection();
+			// create a SQL statment
+			String sql = "update  student_teacher " + "set name=?,pwd=?,chance=? ,days=?,time=?,is_teacher=?"
+					+ " where id=?";
+			myStatement = myConnection.prepareStatement(sql);
+
+			// set the param values for the student
+			myStatement.setString(1, teacherStudent.getName());
+			myStatement.setString(2, teacherStudent.getPwd());
+			myStatement.setString(3, teacherStudent.getChance());
+			myStatement.setString(4, teacherStudent.getDays());
+			myStatement.setString(5, teacherStudent.getTime());
+			myStatement.setBoolean(6, teacherStudent.isTeacher());
+			myStatement.setInt(7, teacherStudent.getId());
+
+			myStatement.execute();
+
+		} finally {
+			close(myConnection, myStatement, null);
+		}
+
+	}
+
 }
