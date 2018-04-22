@@ -63,7 +63,8 @@ public class LoginController extends BasicController {
 				out.println("login success");
 
 			} else {
-				out.println("login faile");
+//				out.println("login faile");
+				 response.sendRedirect("login.jsp");
 			}
 
 		} catch (SQLException e) {
