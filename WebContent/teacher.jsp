@@ -1,4 +1,4 @@
-<%@page import="Model.Couse"%>
+<%@page import="Model.Course"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c"%>
 <%
@@ -17,7 +17,7 @@
 
 
 <%
-	List<Couse> stuIdList = (List<Couse>) request.getAttribute("stuIdList");
+	List<Course> stuIdList = (List<Course>) request.getAttribute("stuIdList");
 %>
 </head>
 
@@ -51,7 +51,7 @@
 
 
 				<%
-					for (Couse student : stuIdList) {
+					for (Course student : stuIdList) {
 				%>
 				<tr>
 					<td style="margin-left: 40px"><%=student.getTeachercourse()%></td>
@@ -83,7 +83,7 @@
 
 
 				<%
-					for (Couse student : stuIdList) {
+					for (Course student : stuIdList) {
 				%>
 				<tr>
 					<td style="margin-left: 40px"><%=student.getStudentid()%></td>

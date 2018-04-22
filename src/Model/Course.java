@@ -1,6 +1,6 @@
 package Model;
 
-public class Couse {
+public class Course {
 
 	private int id;
 	private int studentid;
@@ -8,7 +8,7 @@ public class Couse {
 	private String teachername;
 	private String teachercourse;
 
-	public Couse(int id, int studentid, int teacherid, String teachername, String teachercourse) {
+	public Course(int id, int studentid, int teacherid, String teachername, String teachercourse) {
 		super();
 		this.id = id;
 		this.studentid = studentid;

@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import Model.Couse;
+import Model.Course;
 import Model.TeacherStudent;
 
 public class ChooseTableDBUtil extends BasicDBUtil {
@@ -20,9 +20,9 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 
 	}
 
-	public List<Couse> getChooseTables() throws SQLException {
+	public List<Course> getChooseTables() throws SQLException {
 
-		List<Couse> chooseTables = new ArrayList<>();
+		List<Course> chooseTables = new ArrayList<>();
 
 		Connection myConnection = null;
 		Statement myStatement = null;
@@ -46,7 +46,7 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 				String teachername = myResultSet.getString("teachername");
 				String teachercourse = myResultSet.getString("teachercourse");
 
-				Couse chooseTable = new Couse(id, studentid, teacherid, teachername, teachercourse);
+				Course chooseTable = new Course(id, studentid, teacherid, teachername, teachercourse);
 
 				chooseTables.add(chooseTable);
 			}
@@ -57,9 +57,9 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 		return chooseTables;
 	}
 
-	public List<Couse> getChooseTablesBuTeacherName(String teacherName) throws SQLException {
+	public List<Course> getChooseTablesBuTeacherName(String teacherName) throws SQLException {
 
-		List<Couse> chooseTables = new ArrayList<>();
+		List<Course> chooseTables = new ArrayList<>();
 
 		Connection myConnection = null;
 		PreparedStatement myStatement = null;
@@ -82,7 +82,7 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 				String teachername = myResultSet.getString("teachername");
 				String teachercourse = myResultSet.getString("teachercourse");
 
-				Couse chooseTable = new Couse(id, studentid, teacherid, teachername, teachercourse);
+				Course chooseTable = new Course(id, studentid, teacherid, teachername, teachercourse);
 
 				chooseTables.add(chooseTable);
 			}
@@ -93,9 +93,9 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 		return chooseTables;
 	}
 
-	public List<Couse> getChooseTablesByStudentID(int studentID) throws SQLException {
+	public List<Course> getChooseTablesByStudentID(int studentID) throws SQLException {
 
-		List<Couse> chooseTables = new ArrayList<>();
+		List<Course> chooseTables = new ArrayList<>();
 
 		Connection myConnection = null;
 		PreparedStatement myStatement = null;
@@ -118,7 +118,7 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 				String teachername = myResultSet.getString("teachername");
 				String teachercourse = myResultSet.getString("teachercourse");
 
-				Couse chooseTable = new Couse(id, studentid, teacherid, teachername, teachercourse);
+				Course chooseTable = new Course(id, studentid, teacherid, teachername, teachercourse);
 
 				chooseTables.add(chooseTable);
 			}
@@ -129,7 +129,7 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 		return chooseTables;
 	}
 
-	public void insetCourse(Couse course) throws Exception {
+	public void insetCourse(Course course) throws Exception {
 
 		Connection myConnection = null;
 		PreparedStatement myStatement = null;

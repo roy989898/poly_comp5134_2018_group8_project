@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DbUtil.ChooseTableDBUtil;
 import DbUtil.StudentTeacherDBUtil;
-import Model.ChooseTable;
+import Model.Course;
 import Model.TeacherStudent;
 
 /**
@@ -74,7 +74,7 @@ public class LoginController extends BasicController {
 
 					// teacher
 
-					List<ChooseTable> stuIdList = ChooseTableDBUtil.getChooseTablesBuTeacherName(name);
+					List<Course> stuIdList = ChooseTableDBUtil.getChooseTablesBuTeacherName(name);
 					request.setAttribute("message", "Welcome  " + name + " !");
 					request.setAttribute("name", name);
 					request.setAttribute("stuIdList", stuIdList);
@@ -84,7 +84,7 @@ public class LoginController extends BasicController {
 				} else {
 					// student
 
-					List<ChooseTable> stuIdList = ChooseTableDBUtil.getChooseTablesByStudentID(user.getId()); // ѧ����ѡ�γ�list
+					List<Course> stuIdList = ChooseTableDBUtil.getChooseTablesByStudentID(user.getId()); // ѧ����ѡ�γ�list
 					StringBuffer courseStr = new StringBuffer(); // �洢ѧ���Ѿ�ѡ�Ŀγ�
 					for (int i = 0; i < stuIdList.size(); i++) {
 						courseStr.append(stuIdList.get(i).getTeachercourse());
