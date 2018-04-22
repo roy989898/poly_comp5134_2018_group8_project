@@ -46,8 +46,10 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 				String time = myResultSet.getString("time");
 				String days = myResultSet.getString("days");
 				boolean isTeacher = myResultSet.getBoolean("is_teacher");
+				float student_per_course_price = myResultSet.getFloat("student_per_course_price");
 
-				TeacherStudent teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher);
+				TeacherStudent teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher,
+						student_per_course_price);
 
 				teacherStudents.add(teacherStudent);
 			}
@@ -84,8 +86,10 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 				String time = myResultSet.getString("time");
 				String days = myResultSet.getString("days");
 				boolean isTeacher = myResultSet.getBoolean("is_teacher");
+				float student_per_course_price = myResultSet.getFloat("student_per_course_price");
 
-				teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher);
+				teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher,
+						student_per_course_price);
 
 			}
 		} finally {
@@ -120,8 +124,10 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 				String time = myResultSet.getString("time");
 				String days = myResultSet.getString("days");
 				boolean isTeacher = myResultSet.getBoolean("is_teacher");
+				float student_per_course_price = myResultSet.getFloat("student_per_course_price");
 
-				teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher);
+				teacherStudent = new TeacherStudent(name, id, pwd, chance, days, time, isTeacher,
+						student_per_course_price);
 
 			}
 		} finally {
@@ -138,7 +144,8 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 		try {
 			myConnection = dataSource.getConnection();
 			// create a SQL statment
-			String sql = "update  student_teacher " + "set name=?,pwd=?,chance=? ,days=?,time=?,is_teacher=?"
+			String sql = "update  student_teacher "
+					+ "set name=?,pwd=?,chance=? ,days=?,time=?,is_teacher=?,student_per_course_price=?"
 					+ " where id=?";
 			myStatement = myConnection.prepareStatement(sql);
 
@@ -149,7 +156,8 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 			myStatement.setString(4, teacherStudent.getDays());
 			myStatement.setString(5, teacherStudent.getTime());
 			myStatement.setBoolean(6, teacherStudent.isTeacher());
-			myStatement.setInt(7, teacherStudent.getId());
+			myStatement.setFloat(7, teacherStudent.getStudent_per_course_price());
+			myStatement.setInt(8, teacherStudent.getId());
 
 			myStatement.execute();
 

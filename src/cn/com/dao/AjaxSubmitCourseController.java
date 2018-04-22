@@ -54,20 +54,47 @@ public class AjaxSubmitCourseController extends BasicController {
 		try {
 			// buy chance
 			TeacherStudent student = studentTeacherDB.getStudentSteacherByUserName(studentName);
-			if (chance != null) { // ???????
-				int newChance = Integer.parseInt(student.getChance()) + Integer.parseInt(chance);
-				student.setChance(newChance + "");
-				student.setDays(90 + "");
-				student.setTime(DateStr);
-				/*
-				 * dao.update(studentId, null, 90+"", DateStr); dao.update(studentId,
-				 * newChance+"", null, null);
-				 */
+			int oldChance = Integer.parseInt(student.getChance());
+			if (chance != null) {
 
-				studentTeacherDB.updateStudentTeacher(student);
+				if (oldChance != 0) {
+					out.print("sorry, your still have chance,please use them first");
+					out.close();
+				} else {
+					int newChance = Integer.parseInt(student.getChance()) + Integer.parseInt(chance);
 
-				out.print("succeed!"); // ??????£^???????????
-				out.close();
+					float perCoursePrice;
+					switch (newChance) {
+					case 10:
+						perCoursePrice = (float) (1000.0 / 10.0);
+						break;
+					case 20:
+						perCoursePrice = (float) (1500. / 20.0);
+						break;
+					case 30:
+						perCoursePrice = (float) (2000.0 / 30.0);
+						break;
+
+					default:
+						perCoursePrice = 0;
+						break;
+					}
+					student.setChance(newChance + "");
+					student.setDays(90 + "");
+					student.setTime(DateStr);
+					student.setStudent_per_course_price(perCoursePrice);
+
+					/*
+					 * dao.update(studentId, null, 90+"", DateStr); dao.update(studentId,
+					 * newChance+"", null, null);
+					 */
+
+					studentTeacherDB.updateStudentTeacher(student);
+
+					out.print("succeed!"); // ??????£^???????????
+					out.close();
+				} // ???????
+
 			} else if (Integer.parseInt(student.getChance()) <= 0) {
 
 				out.print("sorry, your chance is 0!");
@@ -83,7 +110,7 @@ public class AjaxSubmitCourseController extends BasicController {
 			} else {
 
 				//
-				// TODO select course
+				// select course
 
 				for (int i = 0; i < courseList.size(); i++) {
 
