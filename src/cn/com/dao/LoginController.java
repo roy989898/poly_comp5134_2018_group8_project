@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DbUtil.ChooseTableDBUtil;
+import DbUtil.ComissionDBUtil;
 import DbUtil.StudentTeacherDBUtil;
 import Model.Course;
 import Model.TeacherStudent;
@@ -27,6 +28,8 @@ public class LoginController extends BasicController {
 	private StudentTeacherDBUtil studentTeacherDBUtil;
 
 	private ChooseTableDBUtil ChooseTableDBUtil;
+
+	private ComissionDBUtil comissionDBUtil;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,6 +48,7 @@ public class LoginController extends BasicController {
 			studentTeacherDBUtil = new StudentTeacherDBUtil(getDataSource());
 
 			ChooseTableDBUtil = new ChooseTableDBUtil(getDataSource());
+			comissionDBUtil = new ComissionDBUtil(getDataSource());
 		} catch (Exception e) {
 
 			throw new ServletException(e);
@@ -83,17 +87,19 @@ public class LoginController extends BasicController {
 					// user teacher id
 					int teacherID = user.getId();
 					// get the courses by the teacher id
-					List<Course> courseInfList = ChooseTableDBUtil.getChooseTablesByTeacherID(teacherID);
+					// List<Course> courseInfList =
+					// ChooseTableDBUtil.getChooseTablesByTeacherID(teacherID);
 
-					float totlaComission = 0;
-					for (Course courseInf : courseInfList) {
-						// use the courses get the student id
-						int studentID = courseInf.getStudentid();
-						// use studetn id get the per course price
-						TeacherStudent student = studentTeacherDBUtil.getStudentSteacherByID(studentID);
-						float aStudentCommision = student.getStudent_per_course_price() * 50 / 100;
-						totlaComission = totlaComission + aStudentCommision;
-					}
+					float totlaComission = comissionDBUtil.getComissionBYTeacherID(teacherID);
+					// for (Course courseInf : courseInfList) {
+					// // use the courses get the student id
+					// int studentID = courseInf.getStudentid();
+					// // use studetn id get the per course price
+					// TeacherStudent student =
+					// studentTeacherDBUtil.getStudentSteacherByID(studentID);
+					// float aStudentCommision = student.getStudent_per_course_price() * 50 / 100;
+					// totlaComission = totlaComission + aStudentCommision;
+					// }
 
 					request.setAttribute("comission", totlaComission);
 
