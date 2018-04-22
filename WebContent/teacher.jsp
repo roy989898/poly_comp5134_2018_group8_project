@@ -22,15 +22,50 @@
 </head>
 
 <body style="text-align: center; margin-left: auto; margin-right: auto;">
-	<a style="float: right; margin-right: 30px;"
-		href="/select_course/login.jsp">Log out</a>
+	<a style="float: right; margin-right: 30px;" href="login.jsp">Log
+		out</a>
 	<br>
 	<div style="margin-top: 50px;">
 
 		<h1>${message}</h1>
-		<div style="margin-top: 30px;">
+		<%-- <div style="margin-top: 30px;">
 			<span>Name:${name} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>course:${mycourse}</span>
+		</div> --%>
+
+
+
+		<div style="margin-top: 50px;">
+			<p id="student">your courses</p>
+			<table class="custom_tb">
+				<thead>
+					<tr>
+						<th>Courses</th>
+					</tr>
+				</thead>
+
+				<%-- 	<c:forEach var="stu" items="${stuIdList}">
+					<tr>
+						<td style="margin-left: 40px">student${stu.studentid}</td>
+					</tr>
+				</c:forEach> --%>
+
+
+				<%
+					for (ChooseTable student : stuIdList) {
+				%>
+				<tr>
+					<td style="margin-left: 40px"><%=student.getTeachercourse()%></td>
+				</tr>
+
+				<%
+					}
+				%>
+
+			</table>
 		</div>
+
+
+
 		<div style="margin-top: 50px;">
 			<p id="student">your students</p>
 			<table class="custom_tb">
