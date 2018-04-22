@@ -17,43 +17,43 @@ public class ChooseTable {
 		this.teachercourse = teachercourse;
 	}
 
-	protected int getId() {
+	public int getId() {
 		return id;
 	}
 
-	protected void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	protected int getStudentid() {
+	public int getStudentid() {
 		return studentid;
 	}
 
-	protected void setStudentid(int studentid) {
+	public void setStudentid(int studentid) {
 		this.studentid = studentid;
 	}
 
-	protected int getTeacherid() {
+	public int getTeacherid() {
 		return teacherid;
 	}
 
-	protected void setTeacherid(int teacherid) {
+	public void setTeacherid(int teacherid) {
 		this.teacherid = teacherid;
 	}
 
-	protected String getTeachername() {
+	public String getTeachername() {
 		return teachername;
 	}
 
-	protected void setTeachername(String teachername) {
+	public void setTeachername(String teachername) {
 		this.teachername = teachername;
 	}
 
-	protected String getTeachercourse() {
+	public String getTeachercourse() {
 		return teachercourse;
 	}
 
-	protected void setTeachercourse(String teachercourse) {
+	public void setTeachercourse(String teachercourse) {
 		this.teachercourse = teachercourse;
 	}
 	
