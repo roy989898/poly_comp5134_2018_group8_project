@@ -115,14 +115,17 @@ public class AjaxSubmitCourseController extends BasicController {
 				for (int i = 0; i < courseList.size(); i++) {
 
 					String course = courseList.get(i);
-					int teacherId = 0;
+					int tempTeacherId = 0;
 					if (course.length() == 7) {
-						teacherId = Integer.parseInt(course.substring(course.length() - 1, course.length()));
+						tempTeacherId = Integer.parseInt(course.substring(course.length() - 1, course.length()));
 					} else {
-						teacherId = Integer.parseInt(course.substring(course.length() - 2, course.length()));
+						tempTeacherId = Integer.parseInt(course.substring(course.length() - 2, course.length()));
 					}
 
-					Course courseObject = new Course(studentId, teacherId, "teacher" + teacherId, course);
+					String teacherName = "teacher" + tempTeacherId;
+					TeacherStudent teacher = studentTeacherDB.getStudentSteacherByUserName(teacherName);
+
+					Course courseObject = new Course(studentId, teacher.getId(), teacherName, course);
 					chooseTableDB.insetCourse(courseObject);
 
 				}
