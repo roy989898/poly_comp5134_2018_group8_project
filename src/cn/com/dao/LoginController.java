@@ -3,15 +3,12 @@ package cn.com.dao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 import DbUtil.StudentTeacherDBUtil;
 import Model.TeacherStudent;
@@ -20,11 +17,8 @@ import Model.TeacherStudent;
  * Servlet implementation class LoginController
  */
 @WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+public class LoginController extends BasicController {
 	private static final long serialVersionUID = 1L;
-
-	@Resource(name = "jdbc/db")
-	private DataSource dataSource;
 
 	private StudentTeacherDBUtil studentTeacherDBUtil;
 
@@ -42,7 +36,7 @@ public class LoginController extends HttpServlet {
 		super.init();
 
 		try {
-			studentTeacherDBUtil = new StudentTeacherDBUtil(dataSource);
+			studentTeacherDBUtil = new StudentTeacherDBUtil(getDataSource());
 		} catch (Exception e) {
 			// TODO: handle exception
 			throw new ServletException(e);
@@ -63,14 +57,12 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("pwd");
 
 		try {
-			TeacherStudent user = studentTeacherDBUtil.getStudentSteacherByUserNamePassword(name,password);
+			TeacherStudent user = studentTeacherDBUtil.getStudentSteacherByUserNamePassword(name, password);
 
-		
-			
-			if (user!=null) {
+			if (user != null) {
 				out.println("login success");
-				
-			}else {
+
+			} else {
 				out.println("login faile");
 			}
 
