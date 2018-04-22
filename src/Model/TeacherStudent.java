@@ -1,18 +1,16 @@
 package Model;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 public class TeacherStudent {
 	
 
 	private String name;
-	private String id;
+	private int id;
 	private String pwd;
 	private String chance;
 	private String days;
 	private String time;
 	private boolean isTeacher;
-	public TeacherStudent(String name, String id, String pwd, String chance, String days, String time,
+	public TeacherStudent(String name, int id, String pwd, String chance, String days, String time,
 			boolean isTeacher) {
 		super();
 		this.name = name;
@@ -29,10 +27,10 @@ public class TeacherStudent {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getPwd() {
