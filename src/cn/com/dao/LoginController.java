@@ -32,13 +32,13 @@ public class LoginController extends BasicController {
 
 	@Override
 	public void init() throws ServletException {
-		// TODO Auto-generated method stub
+	
 		super.init();
 
 		try {
 			studentTeacherDBUtil = new StudentTeacherDBUtil(getDataSource());
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			throw new ServletException(e);
 		}
 
@@ -67,7 +67,7 @@ public class LoginController extends BasicController {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 			throw new ServletException(e);
 		}
