@@ -4,7 +4,7 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-	+ path + "/";
+			+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -18,6 +18,7 @@
 
 <%
 	List<Course> stuIdList = (List<Course>) request.getAttribute("stuIdList");
+	float comission = (Float) request.getAttribute("comission");
 %>
 </head>
 
@@ -32,6 +33,10 @@
 			<span>Name:${name} </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>course:${mycourse}</span>
 		</div> --%>
 
+
+
+		<br> your commision is
+		<%=comission%>
 
 
 		<div style="margin-top: 50px;">

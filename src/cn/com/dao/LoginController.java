@@ -79,6 +79,24 @@ public class LoginController extends BasicController {
 					request.setAttribute("name", name);
 					request.setAttribute("stuIdList", stuIdList);
 					request.setAttribute("mycourse", "temp my course");
+
+					// user teacher id
+					int teacherID = user.getId();
+					// get the courses by the teacher id
+					List<Course> courseInfList = ChooseTableDBUtil.getChooseTablesByTeacherID(teacherID);
+
+					float totlaComission = 0;
+					for (Course courseInf : courseInfList) {
+						// use the courses get the student id
+						int studentID = courseInf.getStudentid();
+						// use studetn id get the per course price
+						TeacherStudent student = studentTeacherDBUtil.getStudentSteacherByID(studentID);
+						float aStudentCommision = student.getStudent_per_course_price() * 50 / 100;
+						totlaComission = totlaComission + aStudentCommision;
+					}
+
+					request.setAttribute("comission", totlaComission);
+
 					request.getRequestDispatcher("/teacher.jsp").forward(request, response);
 
 				} else {

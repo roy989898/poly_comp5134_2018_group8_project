@@ -137,6 +137,44 @@ public class StudentTeacherDBUtil extends BasicDBUtil {
 		return teacherStudent;
 	}
 
+	public TeacherStudent getStudentSteacherByID(int id) throws SQLException {
+
+		Connection myConnection = null;
+		PreparedStatement myStatement = null;
+		ResultSet myResultSet = null;
+		TeacherStudent teacherStudent = null;
+		try {
+			myConnection = dataSource.getConnection();
+			// create a SQL statment
+			String sql = "select * from student_teacher where id=?";
+			myStatement = myConnection.prepareStatement(sql);
+			myStatement.setInt(1, id);
+
+			myResultSet = myStatement.executeQuery();
+
+			// process the result set
+
+			if (myResultSet.next()) {
+				int infID = myResultSet.getInt("id");
+				String name = myResultSet.getString("name");
+				String pwd = myResultSet.getString("pwd");
+				String chance = myResultSet.getString("chance");
+				String time = myResultSet.getString("time");
+				String days = myResultSet.getString("days");
+				boolean isTeacher = myResultSet.getBoolean("is_teacher");
+				float student_per_course_price = myResultSet.getFloat("student_per_course_price");
+
+				teacherStudent = new TeacherStudent(name, infID, pwd, chance, days, time, isTeacher,
+						student_per_course_price);
+
+			}
+		} finally {
+			close(myConnection, myStatement, myResultSet);
+		}
+
+		return teacherStudent;
+	}
+
 	public void updateStudentTeacher(TeacherStudent teacherStudent) throws SQLException {
 		Connection myConnection = null;
 		PreparedStatement myStatement = null;
