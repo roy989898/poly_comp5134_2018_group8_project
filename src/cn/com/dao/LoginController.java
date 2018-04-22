@@ -3,6 +3,7 @@ package cn.com.dao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -77,12 +78,43 @@ public class LoginController extends BasicController {
 					request.setAttribute("message", "Welcome  " + name + " !");
 					request.setAttribute("name", name);
 					request.setAttribute("stuIdList", stuIdList);
-					// TODO handle the my course
 					request.setAttribute("mycourse", "temp my course");
 					request.getRequestDispatcher("/teacher.jsp").forward(request, response);
 
 				} else {
 					// student
+
+					List<ChooseTable> stuIdList = ChooseTableDBUtil.getChooseTablesByStudentID(user.getId()); // ѧ����ѡ�γ�list
+					StringBuffer courseStr = new StringBuffer(); // �洢ѧ���Ѿ�ѡ�Ŀγ�
+					for (int i = 0; i < stuIdList.size(); i++) {
+						courseStr.append(stuIdList.get(i).getTeachercourse());
+						if (i < stuIdList.size() - 1) {
+							courseStr.append(","); // �ö��Ÿ�
+						}
+					}
+					// �õ�����ѡ��Ŀγ��б�
+					List<String> ableList = new ArrayList<String>();
+					for (int i = 1; i <= 30; i++) {
+						ableList.add("course" + i); // ��30���γ�
+					}
+					for (int i = 0; i < stuIdList.size(); i++) { // ��ѡ�Ŀγ̲������ڴ�ѡ�Ŀγ���
+						for (int j = 0; j < ableList.size(); j++) {
+							if (ableList.get(j).equals(stuIdList.get(i).getTeachercourse())) {
+								ableList.remove(j);
+								j--;
+							}
+						}
+					}
+
+					request.setAttribute("message", "Welcome  " + name + " !"); // ��request���з�����Ϣ
+					request.setAttribute("name", user.getName());
+					request.setAttribute("studentId", user.getId());
+					request.setAttribute("chance", user.getChance());
+					request.setAttribute("days", user.getDays());
+					request.setAttribute("courseStr", courseStr);
+					request.setAttribute("ableList", ableList);
+					request.getRequestDispatcher("/selectCourse.jsp").forward(request, response);// ת�����ɹ�ҳ��
+
 				}
 
 			} else {

@@ -103,6 +103,47 @@ public class ChooseTableDBUtil extends BasicDBUtil {
 	}
 	
 	
+	public List<ChooseTable> getChooseTablesByStudentID(int studentID) throws SQLException {
+
+		List<ChooseTable> chooseTables = new ArrayList<>();
+
+		Connection myConnection = null;
+		PreparedStatement myStatement = null;
+		ResultSet myResultSet = null;
+
+		try {
+			myConnection = dataSource.getConnection();
+			// create a SQL statment
+			String sql = "select * from choose_table where studentid=? order by id";
+			myStatement = myConnection.prepareStatement(sql);
+			myStatement.setInt(1, studentID);
+
+			myResultSet = myStatement.executeQuery();
+
+			// process the result set
+			while (myResultSet.next()) {
+				int id = myResultSet.getInt("id");
+				int studentid = myResultSet.getInt("studentid");
+				int teacherid = myResultSet.getInt("teacherid");
+				String teachername=myResultSet.getString("teachername");
+				String teachercourse=myResultSet.getString("teachercourse");
+				
+
+				
+				ChooseTable	chooseTable=new ChooseTable(id, studentid, teacherid, teachername, teachercourse);
+				
+				
+
+				chooseTables.add(chooseTable);
+			}
+		} finally {
+			close(myConnection, myStatement, myResultSet);
+		}
+
+		return chooseTables;
+	}
+	
+	
 	
 	
 
